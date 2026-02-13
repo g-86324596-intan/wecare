@@ -1,0 +1,8 @@
+-- CreateEnum
+CREATE TYPE "Role" AS ENUM ('ADMIN', 'MENTOR', 'MENTEE');
+
+-- AlterTable
+ALTER TABLE "User"
+ADD COLUMN "name" TEXT,
+ADD COLUMN "passwordHash" TEXT NOT NULL DEFAULT '',
+ADD COLUMN "role" "Role" NOT NULL DEFAULT 'MENTEE';
