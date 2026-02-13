@@ -1,0 +1,28 @@
+{
+  "name": "wecare",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "prisma:migrate": "prisma migrate dev",
+    "prisma:generate": "prisma generate"
+  },
+  "dependencies": {
+    "next": "14.2.6",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "@prisma/client": "5.18.0"
+  },
+  "devDependencies": {
+    "prisma": "5.18.0",
+    "typescript": "5.5.4",
+    "@types/node": "20.14.14",
+    "@types/react": "18.3.3",
+    "@types/react-dom": "18.3.0",
+    "eslint": "8.57.0",
+    "eslint-config-next": "14.2.6"
+  }
+}
