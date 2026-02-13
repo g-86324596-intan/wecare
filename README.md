@@ -1,6 +1,6 @@
 # Wecare scaffold (Next.js + TypeScript + Prisma + PostgreSQL)
 
-This repository contains only the initial stack scaffolding for Wecare.
+This repository contains the scaffold with authentication + RBAC.
 
 ## Prerequisites
 
@@ -22,28 +22,50 @@ docker compose up -d db
 cp .env.example .env
 ```
 
-3. Install dependencies:
+3. Add a JWT secret in `.env`:
+
+```env
+JWT_SECRET="replace-with-a-long-random-secret"
+```
+
+4. Install dependencies:
 
 ```bash
 npm install
 ```
 
-4. Run Prisma migrations:
+5. Run Prisma migrations:
 
 ```bash
 npx prisma migrate dev
 ```
 
-5. Start the Next.js dev server:
+6. Seed the database (creates admin user):
+
+```bash
+npx prisma db seed
+```
+
+Admin credentials:
+
+- Email: `admin@wecare.local`
+- Password: `Admin123!`
+
+7. Start the Next.js dev server:
 
 ```bash
 npm run dev
 ```
 
-6. Open http://localhost:3000
+8. Open http://localhost:3000 and login at `/login`.
 
-## Included stack
+## Auth + RBAC overview
 
-- Next.js (App Router) + TypeScript
-- Prisma ORM
-- PostgreSQL via Docker Compose (`db` service)
+- Roles: `ADMIN`, `MENTOR`, `MENTEE`
+- Auth APIs:
+  - `POST /api/auth/login`
+  - `POST /api/auth/logout`
+  - `GET /api/auth/me`
+- Route guards:
+  - `/group/*` requires any authenticated user
+  - `/admin/*` requires `ADMIN`
